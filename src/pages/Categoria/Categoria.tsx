@@ -1,8 +1,13 @@
 import React from 'react'
+import ListaCategorias from '../../components/ListaCategorias/ListaCategorias'
+import Navbar from '../../components/Navbar/Navbar'
 
 const Categoria = () => {
   return (
-    <div>Categoria</div>
+    <div>
+      <Navbar/>
+      <ListaCategorias/>
+    </div>
   )
 }
 
