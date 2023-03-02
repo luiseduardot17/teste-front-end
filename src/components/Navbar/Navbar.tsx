@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-primary">
   <div className="container-fluid">
     <a className="navbar-brand">Navbar</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,13 +11,13 @@ const Navbar = () => {
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/" className="nav-link text-bg-primary">Home</Link>
         </li>
         <li className="nav-item">
-          <Link to="/categoria" className="nav-link">Categorias</Link>
+          <Link to="/categoria" className="nav-link text-bg-primary">Categorias</Link>
         </li>
         <li className="nav-item">
-          <Link to="/admin/categoria" className="nav-link">adm</Link>
+          <Link to="/admin/categoria" className="nav-link text-bg-primary">Administração</Link>
         </li>
       </ul>
     </div>
