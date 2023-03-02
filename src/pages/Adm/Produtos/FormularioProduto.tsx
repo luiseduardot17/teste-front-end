@@ -12,12 +12,13 @@ const FormularioProduto = () => {
     const [categoria, setCategoria] = useState('')
     const [categorias, setCategorias] = useState<ICategoria[]>([])
 
+
     useEffect(() => {
-        if (parametros.id) {
+
         http.get<ICategoria[]>('ProductCategory')
             .then(resposta => setCategorias(resposta.data))
-        }
-    }, [parametros])
+
+    }, [])
 
     const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
@@ -25,7 +26,7 @@ const FormularioProduto = () => {
             http.put(`Product/${parametros.id}`, {
                 name: nomeProduto,
                 description: descProduto,
-                ProductCategory: categoria
+                productCategory: categoria
             })
                 .then(() => {
                     alert("Produto atualizado com sucesso!")
@@ -38,7 +39,7 @@ const FormularioProduto = () => {
             http.post('Product', {
                 name: nomeProduto,
                 description: descProduto,
-                ProductCategory: categoria
+                productCategory: categoria
             })
                 .then(() => {
                     alert("Produto cadastrado com sucesso!")
