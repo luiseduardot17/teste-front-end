@@ -1,0 +1,52 @@
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import ICategoria from '../../../interfaces/ICategoria'
+import http from '../../../service/api'
+
+const AdmCategorias = () => {
+
+  const [categorias, setCategorias] = useState<ICategoria[]>([])
+
+  useEffect(() => {
+    http.get<ICategoria[]>('ProductCategory')
+      .then(resposta => setCategorias(resposta.data))
+  }, [])
+
+  const excluir = (categoriaQueSeraExcluida: ICategoria) => {
+      http.delete(`ProductCategory/${categoriaQueSeraExcluida.id}`)
+      .then(()=> {
+        const listaCategoria = categorias.filter(categoria => categoria.id !== categoriaQueSeraExcluida.id)
+        setCategorias([ ...listaCategoria ])
+      })
+  }
+
+  return (
+    <div>
+    <table className="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome da Categoria</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Excluir</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {categorias.map(categoria => {
+          return (
+            <tr key={categoria.id}>
+              <td>{categoria.id}</td>
+              <td>{categoria.name}</td>
+              <td><button type="button" className="btn btn-outline-primary fw-bold"><Link to={`/admin/categoria/${categoria.id}`} style={{textDecoration: "none"}}><i className="bi bi-pencil-square" ></i> Editar</Link></button></td>
+              <td><button type="button" className="btn btn-outline-danger fw-bold"><i className="bi bi-trash" onClick={()=> excluir(categoria)}></i> Excluir</button></td>
+            </tr>
+          )
+        })}
+      </tbody>
+    </table>
+    </div>
+  )
+}
+
+export default AdmCategorias
