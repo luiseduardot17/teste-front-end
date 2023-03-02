@@ -36,6 +36,8 @@ const FormularioCategoria = () => {
             })
                 .then(() => {
                     alert("Categoria cadastrada com sucesso!")
+                    setNomeCategoria('');
+                    setDesCategoria('');
                 })
         }
     }

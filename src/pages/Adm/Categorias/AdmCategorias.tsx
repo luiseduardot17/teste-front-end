@@ -15,9 +15,11 @@ const AdmCategorias = () => {
   const excluir = (categoriaQueSeraExcluida: ICategoria) => {
       http.delete(`ProductCategory/${categoriaQueSeraExcluida.id}`)
       .then(()=> {
+        alert("Categoria excluida com sucesso!")
         const listaCategoria = categorias.filter(categoria => categoria.id !== categoriaQueSeraExcluida.id)
         setCategorias([ ...listaCategoria ])
       })
+      .catch(erro => console.log(erro))
   }
 
   return (
@@ -38,8 +40,8 @@ const AdmCategorias = () => {
             <tr key={categoria.id}>
               <td>{categoria.id}</td>
               <td>{categoria.name}</td>
-              <td><button type="button" className="btn btn-outline-primary fw-bold"><Link to={`/admin/categoria/${categoria.id}`} style={{textDecoration: "none"}}><i className="bi bi-pencil-square" ></i> Editar</Link></button></td>
-              <td><button type="button" className="btn btn-outline-danger fw-bold"><i className="bi bi-trash" onClick={()=> excluir(categoria)}></i> Excluir</button></td>
+              <td><Link to={`/admin/categoria/${categoria.id}`} style={{textDecoration: "none"}}><button type="button" className="btn btn-outline-primary fw-bold"><i className="bi bi-pencil-square" ></i> Editar</button></Link></td>
+              <td><button type="button" className="btn btn-outline-danger fw-bold" onClick={()=> excluir(categoria)}><i className="bi bi-trash" ></i> Excluir</button></td>
             </tr>
           )
         })}
