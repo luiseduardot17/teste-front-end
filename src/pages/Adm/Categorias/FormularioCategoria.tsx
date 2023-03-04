@@ -30,7 +30,7 @@ const FormularioCategoria = () => {
                     alert("Categoria atualizada com sucesso!")
                 })
         } else {
-            http.post('ProductCategory', {
+            http.post<ICategoria>('ProductCategory', {
                 name: nomeCategoria,
                 description: descCategoria
             })

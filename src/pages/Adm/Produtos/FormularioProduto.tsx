@@ -20,13 +20,14 @@ const FormularioProduto = () => {
 
     }, [])
 
+
     const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
         if (parametros.id) {
             http.put(`Product/${parametros.id}`, {
                 name: nomeProduto,
                 description: descProduto,
-                productCategory: categoria
+                categoryId: categoria
             })
                 .then(() => {
                     alert("Produto atualizado com sucesso!")
@@ -39,7 +40,7 @@ const FormularioProduto = () => {
             http.post('Product', {
                 name: nomeProduto,
                 description: descProduto,
-                productCategory: categoria
+                categoryId: categoria
             })
                 .then(() => {
                     alert("Produto cadastrado com sucesso!")
@@ -55,7 +56,7 @@ const FormularioProduto = () => {
 
         <div className="container-sm w-25 position-absolute top-50 start-50 translate-middle">
             <h3 className="text-center">Formulário de Produtos</h3>
-            <form onSubmit={aoSubmeterForm} className="mb-3 d-flex flex-column">
+            <form onSubmit={aoSubmeterForm} className="mb-3 d-flex flex-column" encType="multipart/form-data">
                 <div className="form-floating mb-3">
                     <input type="text" className="form-control" id="floatingInput" placeholder="Peças pós venda"
                         value={nomeProduto} onChange={evento => setNomeProduto(evento.target.value)} required />
@@ -70,8 +71,7 @@ const FormularioProduto = () => {
                 <div className="form-floating mb-3">
                     <select className="form-select mb-3" aria-label="select-category" value={categoria} onChange={evento => setCategoria(evento.target.value)} required>
                         <option></option>
-                        {categorias.map(categoria =>
-                            <option key={categoria.id} value={categoria.name}>
+                        {categorias.map(categoria => <option key={categoria.id} value={categoria.id}>
                                 {categoria.name}
                             </option>)}
                     </select>
