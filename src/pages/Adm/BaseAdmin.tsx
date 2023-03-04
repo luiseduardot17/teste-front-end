@@ -1,13 +1,12 @@
 import { Link, Outlet } from 'react-router-dom'
+import Navbar from '../../components/Navbar/Navbar'
 
 const BaseAdmin = () => {
     return (
         <div>
+            <Navbar />
             <nav className="navbar bg-secondary p-0">
-                <div className="container-fluid">
-                    <Link className="navbar-brand" to="/" style={{ textDecoration: "none" }}>Navbar</Link>
-                </div>
-                <ul className="nav nav-tabs d-flex justify-content-center align-items-center vw-100" id="myTab" role="tablist">
+                <ul className="nav nav-tabs d-flex justify-content-center align-items-center vw-100 pt-2" id="myTab" role="tablist">
                     <li className="nav-item" role="presentation">
                         <Link to="/admin/categoria" style={{ textDecoration: "none" }}><button className="nav-link active fw-bold" id="categorias" data-bs-toggle="tab" data-bs-target="#categorias-tab-pane" type="button" role="tab" aria-controls="categorias-tab-pane" aria-selected="true">Categorias</button></Link>
                     </li>
