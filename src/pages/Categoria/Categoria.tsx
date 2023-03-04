@@ -1,15 +1,17 @@
 import React from 'react'
 import ListaCategorias from '../../components/ListaCategorias/ListaCategorias'
 import Navbar from '../../components/Navbar/Navbar'
+import S from './Categoria.module.css'
 
 const Categoria = () => {
   return (
-    <div>
-      <Navbar/>
-      <div className="container-fluid bg-dark-emphasis vh-100">
-      <ListaCategorias/>
-      </div>
-      
+    <div className={S.container}>
+      <Navbar />
+      <section className={S.section}>
+        <div>
+        <ListaCategorias/>
+        </div>
+      </section>
     </div>
   )
 }
