@@ -10,5 +10,5 @@ export default interface IProduto {
   isWarehouse: boolean;
   minPuchaseQuantity: number;
   name: string;
-  productCategory: ICategoria[];
+  productCategory: ICategoria;
 }
