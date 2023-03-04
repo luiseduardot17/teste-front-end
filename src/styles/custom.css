@@ -1,0 +1,64 @@
+:root {
+    --primary: #0d6efd;
+    --secondary: #adb5bd;
+    --tertiary: #194874;
+    --success: #198754;
+    --info: #0dcaf0;
+    --warning: #ffc107;
+    --danger: #dc3545;
+}
+
+.bg-primary,
+.btn-primary {
+    background-color: var(--primary) !important;
+}
+
+.bg-secondary,
+.btn-secondary {
+    background-color: var(--secondary) !important;
+}
+
+.bg-tertiary,
+.btn-tertiary {
+    background-color: var(--tertiary) !important;
+}
+
+.bg-success,
+.btn-success {
+    background-color: var(--success) !important;
+}
+
+.bg-info,
+.btn-info {
+    background-color: var(--info) !important;
+}
+
+.bg-warning,
+.btn-warning {
+    background-color: var(--warning) !important;
+}
+
+.bg-danger .btn-danger {
+    background-color: var(--danger) !important;
+}
+
+.nav-link {
+    background-image: linear-gradient(90deg, #f8f9fa, #f8f9fa);
+    background-repeat: no-repeat;
+    background-size: 0% 3px;
+    background-position: left bottom;
+    transition: background-size 500ms ease;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    background-size: 100% 3px;
+}
+
+.navbar-toggler {
+    color: #f8f9fa !important;
+}
+
+.navbar-collapse {
+    text-align: center;
+}
