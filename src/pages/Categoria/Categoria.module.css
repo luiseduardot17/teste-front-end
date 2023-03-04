@@ -1,0 +1,14 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    background-image: url(../../assets/images/bg-wave.svg);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.section {
+    width: 100%;
+    height: 90vh;
+    padding-top: 10px;
+}
