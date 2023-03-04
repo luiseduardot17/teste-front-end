@@ -22,13 +22,13 @@ const AdmProdutos = () => {
 
     return (
         <div>
-            <table className="table">
+            <table className="table text-center">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nome do Produto</th>
                         <th scope="col">Descrição</th>
-                        <th scope="col">Categoria</th>
+                        <th scope="col">ID Categoria</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Excluir</th>
                     </tr>
