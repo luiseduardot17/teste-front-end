@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import ICategoria from '../../../interfaces/ICategoria'
 import http from '../../../service/api'
 
+
 const FormularioCategoria = () => {
 
     const parametros = useParams()
@@ -17,6 +18,7 @@ const FormularioCategoria = () => {
 
     const [nomeCategoria, setNomeCategoria] = useState('')
     const [descCategoria, setDesCategoria] = useState('')
+
 
     const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
@@ -43,7 +45,7 @@ const FormularioCategoria = () => {
     }
 
     return (
-        
+
 
         <div className="container-sm w-25 position-absolute top-50 start-50 translate-middle">
             <h3 className="text-center">Formulário de Categorias</h3>
