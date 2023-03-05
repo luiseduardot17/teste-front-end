@@ -6,28 +6,26 @@ import Produto from "../Produto/Produto"
 
 interface CategoriaProps {
   categoria: ICategoria
-  produto: IProduto
 }
-const Categoria = ({ categoria, produto }: CategoriaProps) => {
+const Categoria = ({ categoria }: CategoriaProps) => {
 
   const [produtos, setProdutos] = useState<IProduto[]>()
-  
-  // useEffect(() => {
-  //   http.get<IProduto[]>(`Product/${produto.id}`)
-  //     .then(resposta => {
-  //       setProdutos(resposta.data)
-  //     })
-  // }, [categoria.id])
+
+  useEffect(() => {
+    http.get<IProduto[]>(`Product`)
+      .then(resposta => {
+        const listaProdutos = resposta.data.filter(produto => produto.name && produto.categoryId)
+        setProdutos([...listaProdutos])
+      })
+  }, [])
 
   return (
-    <div>
-      <div className="container-sm bg-secondary">
-        <h3>ID {categoria.id} - {categoria.name}</h3>
+    
+      <div className="container-sm bg-secondary mb-4 border border-secondary rounded">
+        <h3>{categoria.name}</h3>
+        {produtos?.map(item => item.categoryId == categoria.id ? <Produto produto={item.name} quantidade={item.minPuchaseQuantity} /> : null)}
       </div>
-      <div>
-        {produtos?.map(item => <Produto produto={item} key={item.id} />)}
-      </div>
-    </div>
+    
   )
 }
 
