@@ -9,6 +9,7 @@ const FormularioProduto = () => {
 
     const [nomeProduto, setNomeProduto] = useState('')
     const [descProduto, setDesProduto] = useState('')
+    const [quantProduto, setQuantProduto] = useState('')
     const [categoria, setCategoria] = useState('')
     const [categorias, setCategorias] = useState<ICategoria[]>([])
 
@@ -27,6 +28,7 @@ const FormularioProduto = () => {
             http.put(`Product/${parametros.id}`, {
                 name: nomeProduto,
                 description: descProduto,
+                minPuchaseQuantity: quantProduto,
                 categoryId: categoria
             })
                 .then(() => {
@@ -34,12 +36,14 @@ const FormularioProduto = () => {
                     setNomeProduto('')
                     setDesProduto('')
                     setCategoria('')
+                    setQuantProduto('')
                 })
                 .catch(erro => console.log(erro))
         } else {
             http.post('Product', {
                 name: nomeProduto,
                 description: descProduto,
+                minPuchaseQuantity: quantProduto,
                 categoryId: categoria
             })
                 .then(() => {
@@ -47,6 +51,7 @@ const FormularioProduto = () => {
                     setNomeProduto('')
                     setDesProduto('')
                     setCategoria('')
+                    setQuantProduto('')
                 })
                 .catch(erro => console.log(erro))
         }
@@ -67,13 +72,18 @@ const FormularioProduto = () => {
                         value={descProduto} onChange={evento => setDesProduto(evento.target.value)} required />
                     <label htmlFor="floatingInput">Descrição</label>
                 </div>
+                <div className="form-floating mb-3">
+                    <input type="number" className="form-control" id="floatingInput" placeholder="Recurso de garantia"
+                        value={quantProduto} onChange={evento => setQuantProduto(evento.target.value)} required />
+                    <label htmlFor="floatingInput">Quantidade Produto</label>
+                </div>
 
                 <div className="form-floating mb-3">
                     <select className="form-select mb-3" aria-label="select-category" value={categoria} onChange={evento => setCategoria(evento.target.value)} required>
                         <option></option>
                         {categorias.map(categoria => <option key={categoria.id} value={categoria.id}>
-                                {categoria.name}
-                            </option>)}
+                            {categoria.name}
+                        </option>)}
                     </select>
                     <label htmlFor="floatingInput">Categoria</label>
                 </div>
