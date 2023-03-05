@@ -20,9 +20,6 @@ const Navbar = () => {
               <Link to="/admin/categoria" className="nav-link bg-tertiary text-light p-0">Administração</Link>
             </li>
             <li className="nav-item mx-auto">
-              <a className="nav-link bg-tertiary text-light p-0">Acompanhamento</a>
-            </li>
-            <li className="nav-item mx-auto">
               <a className="nav-link bg-tertiary text-light p-0">Relatórios</a>
             </li>
             <li className="nav-item mx-auto">
