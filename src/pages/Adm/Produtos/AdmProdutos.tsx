@@ -28,6 +28,7 @@ const AdmProdutos = () => {
                         <th scope="col">ID</th>
                         <th scope="col">Nome do Produto</th>
                         <th scope="col">Descrição</th>
+                        <th scope="col">Quantidade</th>
                         <th scope="col">ID Categoria</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Excluir</th>
@@ -41,6 +42,7 @@ const AdmProdutos = () => {
                                 <td>{produto.id}</td>
                                 <td>{produto.name}</td>
                                 <td>{produto.description}</td>
+                                <td>{produto.minPuchaseQuantity}</td>
                                 <td>{produto.categoryId}</td>
                                 <td><Link to={`/admin/produtos/${produto.id}`} style={{ textDecoration: "none" }}><button type="button" className="btn btn-outline-primary fw-bold"><i className="bi bi-pencil-square" ></i> Editar</button></Link></td>
                                 <td><button type="button" className="btn btn-outline-danger fw-bold" onClick={() => excluir(produto)}><i className="bi bi-trash" ></i> Excluir</button></td>
