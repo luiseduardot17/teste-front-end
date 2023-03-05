@@ -1,18 +1,15 @@
-import IProduto from '../../../interfaces/IProduto'
 
 interface ProdutoProps {
-    produto: IProduto
+    produto: string
+    quantidade: number
 }
 
-const Produto = ({ produto }: ProdutoProps) => {
+const Produto = ({ produto, quantidade }: ProdutoProps) => {
     return (
-        <div>
-            <div>
-                <h3>{produto.name}</h3>
-            </div>
-            <div>
-                <h3>{produto.description}</h3>
-            </div>
+        <div className="container-fluid d-flex justify-content-start">
+            <ul className="list-group w-100">
+                <li className="list-group-item m-1"><strong>QTD: {quantidade} </strong>|  {produto}</li>
+            </ul>
         </div>
     )
 }
