@@ -13,12 +13,13 @@ const FormularioCategoria = () => {
         if (parametros.id) {
             http.get<ICategoria>(`ProductCategory/${parametros.id}`)
                 .then(resposta => setNomeCategoria(resposta.data.name))
+            http.get<ICategoria>(`ProductCategory/${parametros.id}`)
+                .then(resposta => setDesCategoria(resposta.data.description))
         }
     }, [parametros])
 
-
-    const [nomeCategoria, setNomeCategoria] = useState('')
-    const [descCategoria, setDesCategoria] = useState('')
+    const [nomeCategoria, setNomeCategoria] = useState("")
+    const [descCategoria, setDesCategoria] = useState("")
     const [showAlert, setShowAlert] = useState(false);
     const [message, setMessage] = useState('');
 
@@ -56,12 +57,12 @@ const FormularioCategoria = () => {
             <h3 className="text-center">Formulário de Categorias</h3>
             <form onSubmit={aoSubmeterForm} className="mb-3 d-flex flex-column">
                 <div className="form-floating mb-3">
-                    <input type="text" className="form-control" id="floatingInput" placeholder="Veículos"
+                    <input type="text" className="form-control" id="floatingInput" placeholder="nome"
                         value={nomeCategoria} onChange={evento => setNomeCategoria(evento.target.value)} required />
                     <label htmlFor="floatingInput">Nome da Categoria</label>
                 </div>
                 <div className="form-floating mb-3">
-                    <input type="text" className="form-control" id="floatingInput" placeholder="Estoque detalhado dos veículos"
+                    <input type="text" className="form-control" id="floatingInput" placeholder="descrição"
                         value={descCategoria} onChange={evento => setDesCategoria(evento.target.value)} required />
                     <label htmlFor="floatingInput">Descrição</label>
                 </div>

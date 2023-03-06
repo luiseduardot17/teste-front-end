@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Alert from '../../../components/Alert/Alert'
 import ICategoria from '../../../interfaces/ICategoria'
+import IProduto from '../../../interfaces/IProduto'
 import http from '../../../service/api'
 
 const FormularioProduto = () => {
@@ -10,7 +11,7 @@ const FormularioProduto = () => {
 
     const [nomeProduto, setNomeProduto] = useState('')
     const [descProduto, setDesProduto] = useState('')
-    const [quantProduto, setQuantProduto] = useState('')
+    const [quantProduto, setQuantProduto] = useState<number>(0)
     const [categoria, setCategoria] = useState('')
     const [categorias, setCategorias] = useState<ICategoria[]>([])
     const [showAlert, setShowAlert] = useState(false);
@@ -23,6 +24,17 @@ const FormularioProduto = () => {
             .then(resposta => setCategorias(resposta.data))
 
     }, [])
+
+    useEffect(() => {
+        if (parametros.id) {
+            http.get<IProduto>(`Product/${parametros.id}`)
+                .then(resposta => setNomeProduto(resposta.data.name))
+            http.get<IProduto>(`Product/${parametros.id}`)
+                .then(resposta => setDesProduto(resposta.data.description))
+            http.get<IProduto>(`Product/${parametros.id}`)
+                .then(resposta => setQuantProduto(resposta.data.minPuchaseQuantity))
+        }
+    }, [parametros])
 
 
     const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
@@ -40,7 +52,7 @@ const FormularioProduto = () => {
                     setNomeProduto('')
                     setDesProduto('')
                     setCategoria('')
-                    setQuantProduto('')
+                    setQuantProduto(0)
                 })
                 .catch(erro => console.log(erro))
         } else {
@@ -56,7 +68,7 @@ const FormularioProduto = () => {
                     setNomeProduto('')
                     setDesProduto('')
                     setCategoria('')
-                    setQuantProduto('')
+                    setQuantProduto(0)
                 })
                 .catch(erro => console.log(erro))
         }
@@ -80,7 +92,7 @@ const FormularioProduto = () => {
                 </div>
                 <div className="form-floating mb-3">
                     <input type="number" className="form-control" id="floatingInput" placeholder="Recurso de garantia"
-                        value={quantProduto} onChange={evento => setQuantProduto(evento.target.value)} required />
+                        value={quantProduto} onChange={evento => setQuantProduto(parseInt(evento.target.value))} required />
                     <label htmlFor="floatingInput">Quantidade Produto</label>
                 </div>
 
