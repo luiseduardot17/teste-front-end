@@ -23,7 +23,7 @@ const Categoria = ({ categoria }: CategoriaProps) => {
     
       <div className="container-sm bg-secondary mb-4 border border-secondary rounded">
         <h3>{categoria.name}</h3>
-        {produtos?.map(item => item.categoryId == categoria.id ? <Produto produto={item.name} quantidade={item.minPuchaseQuantity} /> : null)}
+        {produtos?.map(item => item.categoryId == categoria.id ? <Produto produto={item.name} quantidade={item.minPuchaseQuantity} key={item.id}/> : null)}
       </div>
     
   )
