@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Alert from '../../../components/Alert/Alert'
 import ICategoria from '../../../interfaces/ICategoria'
 import http from '../../../service/api'
 
 const AdmCategorias = () => {
 
   const [categorias, setCategorias] = useState<ICategoria[]>([])
+  const [showAlert, setShowAlert] = useState(false);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     http.get<ICategoria[]>('ProductCategory')
@@ -16,7 +19,8 @@ const AdmCategorias = () => {
   const excluir = (categoriaQueSeraExcluida: ICategoria) => {
     http.delete(`ProductCategory/${categoriaQueSeraExcluida.id}`)
       .then(() => {
-        alert("Categoria excluida com sucesso!")
+        setMessage("Categoria excluida com sucesso!")
+        setShowAlert(true);
         const listaCategoria = categorias.filter(categoria => categoria.id !== categoriaQueSeraExcluida.id)
         setCategorias([...listaCategoria])
       })
@@ -48,6 +52,7 @@ const AdmCategorias = () => {
           })}
         </tbody>
       </table>
+      {showAlert && <Alert mensagemAlerta={message} />}
     </div>
   )
 }

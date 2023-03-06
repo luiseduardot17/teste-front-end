@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import Alert from '../../../components/Alert/Alert'
 import ICategoria from '../../../interfaces/ICategoria'
 import http from '../../../service/api'
 
@@ -12,6 +13,8 @@ const FormularioProduto = () => {
     const [quantProduto, setQuantProduto] = useState('')
     const [categoria, setCategoria] = useState('')
     const [categorias, setCategorias] = useState<ICategoria[]>([])
+    const [showAlert, setShowAlert] = useState(false);
+    const [message, setMessage] = useState('');
 
 
     useEffect(() => {
@@ -32,7 +35,8 @@ const FormularioProduto = () => {
                 categoryId: categoria
             })
                 .then(() => {
-                    alert("Produto atualizado com sucesso!")
+                    setMessage("Produto atualizado com sucesso!")
+                    setShowAlert(true);
                     setNomeProduto('')
                     setDesProduto('')
                     setCategoria('')
@@ -47,7 +51,8 @@ const FormularioProduto = () => {
                 categoryId: categoria
             })
                 .then(() => {
-                    alert("Produto cadastrado com sucesso!")
+                    setMessage("Produto cadastrado com sucesso!")
+                    setShowAlert(true);
                     setNomeProduto('')
                     setDesProduto('')
                     setCategoria('')
@@ -60,6 +65,7 @@ const FormularioProduto = () => {
     return (
 
         <div className="container-sm w-25 position-absolute top-50 start-50 translate-middle">
+            {showAlert && <Alert mensagemAlerta={message} />}
             <h3 className="text-center">Formulário de Produtos</h3>
             <form onSubmit={aoSubmeterForm} className="mb-3 d-flex flex-column" encType="multipart/form-data">
                 <div className="form-floating mb-3">

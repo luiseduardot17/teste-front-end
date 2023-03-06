@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Alert from '../../../components/Alert/Alert'
 import IProduto from '../../../interfaces/IProduto'
 import http from '../../../service/api'
 
 const AdmProdutos = () => {
     const [produtos, setProdutos] = useState<IProduto[]>([])
+    const [showAlert, setShowAlert] = useState(false);
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         http.get<IProduto[]>('Product')
@@ -14,7 +17,8 @@ const AdmProdutos = () => {
     const excluir = (produtoQueSeraExcluido: IProduto) => {
         http.delete(`Product/${produtoQueSeraExcluido.id}`)
             .then(() => {
-                alert("Produto excluido com sucesso!")
+                setMessage("Produto excluido com sucesso!")
+                setShowAlert(true);
                 const listaProdutos = produtos.filter(produto => produto.id !== produtoQueSeraExcluido.id)
                 setProdutos([...listaProdutos])
             })
@@ -51,6 +55,7 @@ const AdmProdutos = () => {
                     })}
                 </tbody>
             </table>
+            {showAlert && <Alert mensagemAlerta={message} />}
         </div>
     )
 }

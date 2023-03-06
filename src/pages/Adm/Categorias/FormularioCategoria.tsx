@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom"
+import Alert from '../../../components/Alert/Alert'
 import ICategoria from '../../../interfaces/ICategoria'
 import http from '../../../service/api'
 
@@ -18,10 +19,12 @@ const FormularioCategoria = () => {
 
     const [nomeCategoria, setNomeCategoria] = useState('')
     const [descCategoria, setDesCategoria] = useState('')
-
+    const [showAlert, setShowAlert] = useState(false);
+    const [message, setMessage] = useState('');
 
     const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
+
 
         if (parametros.id) {
             http.put(`ProductCategory/${parametros.id}`, {
@@ -29,7 +32,8 @@ const FormularioCategoria = () => {
                 description: descCategoria
             })
                 .then(() => {
-                    alert("Categoria atualizada com sucesso!")
+                    setMessage("Categoria atualizada com sucesso!")
+                    setShowAlert(true);
                 })
         } else {
             http.post<ICategoria>('ProductCategory', {
@@ -37,7 +41,8 @@ const FormularioCategoria = () => {
                 description: descCategoria
             })
                 .then(() => {
-                    alert("Categoria cadastrada com sucesso!")
+                    setMessage("Categoria cadastrada com sucesso!")
+                    setShowAlert(true);
                     setNomeCategoria('');
                     setDesCategoria('');
                 })
@@ -46,8 +51,8 @@ const FormularioCategoria = () => {
 
     return (
 
-
         <div className="container-sm w-25 position-absolute top-50 start-50 translate-middle">
+            {showAlert && <Alert mensagemAlerta={message} />}
             <h3 className="text-center">Formulário de Categorias</h3>
             <form onSubmit={aoSubmeterForm} className="mb-3 d-flex flex-column">
                 <div className="form-floating mb-3">
