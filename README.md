@@ -53,4 +53,4 @@ npm run dev
 
 #
 
->  This is a test by <a href="telemetrix.com.br" target="_blank">Telemetrix Intelligence & Consulting</a>
+>  This is a test by <a href="http://telemetrix.com.br/" target="_blank">Telemetrix Intelligence & Consulting</a>
